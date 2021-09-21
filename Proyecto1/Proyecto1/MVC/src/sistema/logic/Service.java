@@ -26,7 +26,6 @@ public class Service {
     // Service methods
          public Cliente clienteGet(String cedula) throws Exception{
         Cliente result=data.getClientes().stream().filter(c->c.getCedula().equals(cedula)).findFirst().orElse(null);
-       //Cliente result=clientes.get(cedua);
         if (result!=null) return result;
         else throw new Exception("Cliente no existe");   
     }
@@ -39,10 +38,10 @@ public class Service {
             }
         }
         
-      //  ArrayList<Canton> result =  (ArrayList<Canton>) P.getCantones();
+
          return null;
                 
-       //Cliente result=clientes.get(cedua);
+      
         
     }
      /* 
