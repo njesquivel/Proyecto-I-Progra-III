@@ -14,6 +14,6 @@ public class Application {
         controller.show();
     }
 //Maria Cruz
-    //Norlan Esquivel
+    //Norlan
     //gaston 
 }
