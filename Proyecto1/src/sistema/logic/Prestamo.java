@@ -6,12 +6,24 @@
 package sistema.logic;
 
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlIDREF;
 
 
 public class Prestamo {
     double monto;
     double interes;
     int plazo;
+    @XmlIDREF
+    Cliente cliente;
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
 
     public Prestamo(double monto, double interes, int plazo) {
         this.monto = monto;

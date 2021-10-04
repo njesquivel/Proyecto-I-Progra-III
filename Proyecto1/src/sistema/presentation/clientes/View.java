@@ -182,6 +182,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         });
 
         prestamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/iconos/prestamos.png"))); // NOI18N
+        prestamos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prestamosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -447,6 +452,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                     Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }//GEN-LAST:event_cantonActionPerformed
+
+    private void prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamosActionPerformed
+      controller.PrestamoShow();
+    }//GEN-LAST:event_prestamosActionPerformed
 
 
     public static void main(String args[]) {
