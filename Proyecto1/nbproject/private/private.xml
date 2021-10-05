@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ESCINF/Pictures/PROYECTOP3/src/sistema/presentation/clientes/View.java</file>
-            <file>file:/C:/Users/ESCINF/Pictures/PROYECTOP3/src/sistema/logic/Service.java</file>
-            <file>file:/C:/Users/ESCINF/Pictures/PROYECTOP3/src/sistema/presentation/clientes/ClientesTableModel.java</file>
-            <file>file:/C:/Users/ESCINF/Pictures/PROYECTOP3/src/sistema/logic/Cliente.java</file>
-            <file>file:/C:/Users/ESCINF/Pictures/PROYECTOP3/src/sistema/presentation/clientes/Controller.java</file>
-            <file>file:/C:/Users/ESCINF/Pictures/PROYECTOP3/src/sistema/presentation/clientes/Model.java</file>
+            <file>file:/C:/Users/ESCINF/Documents/GitHub/Proyecto-I-Progra-III/Proyecto1/src/sistema/presentation/prestamos/Controller.java</file>
+            <file>file:/C:/Users/ESCINF/Documents/GitHub/Proyecto-I-Progra-III/Proyecto1/src/sistema/presentation/prestamos/PrestamosTableModel.java</file>
+            <file>file:/C:/Users/ESCINF/Documents/GitHub/Proyecto-I-Progra-III/Proyecto1/src/sistema/Application.java</file>
+            <file>file:/C:/Users/ESCINF/Documents/GitHub/Proyecto-I-Progra-III/Proyecto1/src/sistema/data/XmlPersister.java</file>
+            <file>file:/C:/Users/ESCINF/Documents/GitHub/Proyecto-I-Progra-III/Proyecto1/src/imagenes/Prestamo.png</file>
+            <file>file:/C:/Users/ESCINF/Documents/GitHub/Proyecto-I-Progra-III/Proyecto1/src/sistema/presentation/clientes/Controller.java</file>
+            <file>file:/C:/Users/ESCINF/Documents/GitHub/Proyecto-I-Progra-III/Proyecto1/src/sistema/logic/Service.java</file>
+            <file>file:/C:/Users/ESCINF/Documents/GitHub/Proyecto-I-Progra-III/Proyecto1/src/sistema/presentation/prestamos/View.java</file>
+            <file>file:/C:/Users/ESCINF/Documents/GitHub/Proyecto-I-Progra-III/Proyecto1/src/sistema/presentation/clientes/View.java</file>
         </group>
     </open-files>
 </project-private>

@@ -11,13 +11,23 @@ import sistema.presentation.clientes.View;
 
 
 public class Application {
-
+ 
     public static void main(String[] args) {
         sistema.presentation.clientes.Model modelClientes=new sistema.presentation.clientes.Model() ;
         sistema.presentation.clientes.View viewClientes = new sistema.presentation.clientes.View();
         sistema.presentation.clientes.Controller controllerClientes = new sistema.presentation.clientes.Controller(modelClientes,viewClientes);
         CLIENTES = controllerClientes;
         CLIENTES.show();
+
+        sistema.presentation.prestamos.Model modelprestamo=new sistema.presentation.prestamos.Model() ;
+        sistema.presentation.prestamos.View viewprestamo = new sistema.presentation.prestamos.View();
+        sistema.presentation.prestamos.Controller controllerprestamo = new sistema.presentation.prestamos.Controller(modelprestamo,viewprestamo);
+        PRESTAMO = controllerprestamo;
+       // PRESTAMO.show();
+
+         CLIENTES.show();
+
     }
         public static sistema.presentation.clientes.Controller CLIENTES;
+        public static sistema.presentation.prestamos.Controller PRESTAMO;
 }

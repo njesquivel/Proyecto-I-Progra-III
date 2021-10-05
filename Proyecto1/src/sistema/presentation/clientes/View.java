@@ -184,6 +184,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         });
 
         prestamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/iconos/prestamos.png"))); // NOI18N
+        prestamos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prestamosActionPerformed(evt);
+            }
+        });
 
         limpiarMapa.setText("Limpiar Mapa");
         limpiarMapa.addActionListener(new java.awt.event.ActionListener() {
@@ -472,6 +477,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         distrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String []{}));
         // TODO add your handling code here:
     }//GEN-LAST:event_limpiarMapaActionPerformed
+
+    private void prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamosActionPerformed
+        // TODO add your handling code here:
+      controller.prestamosShow();
+    }//GEN-LAST:event_prestamosActionPerformed
 
 
     public static void main(String args[]) {
