@@ -6,23 +6,33 @@
 package sistema.logic;
 
 public class Mensualidad {
-      int numero;
+      String numero;
     double saldo;
     double interes;
     double amortizacion;
 
 
     
-    public Mensualidad(int numero, double saldo, double interes, double amortizacion) {
+    public Mensualidad(String numero, double saldo, double interes, double amortizacion) {
         this.numero = numero;
         this.saldo = saldo;
         this.interes = interes;
         this.amortizacion = amortizacion;
     }
 
-    public int getNumero() {
+    public Mensualidad() {
+    }
+
+    public String getNumero() {
         return numero;
     }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+    
+
+    
 
     public double getSaldo() {
         return saldo;
@@ -36,9 +46,7 @@ public class Mensualidad {
         return amortizacion;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
+    
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;

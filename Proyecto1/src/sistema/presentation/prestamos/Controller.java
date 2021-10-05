@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import sistema.Application;
 import static sistema.Application.CLIENTES;
+import static sistema.Application.PAGOS;
 import sistema.logic.Cliente;
 import sistema.logic.Prestamo;
 import sistema.logic.Service;
@@ -80,5 +81,10 @@ public class Controller {
         
     }
     
+    
+    public void pagosShow(){
+        this.hide();
+        Application.PAGOS.show();
+    }
   
 }

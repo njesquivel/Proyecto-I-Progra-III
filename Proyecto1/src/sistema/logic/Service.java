@@ -89,6 +89,32 @@ public class Service {
         else throw new Exception("Prestamo ya existe");           
         
     }  
+    
+    //-----------------------------Mensualidad-----------------------------------------------------
+       public Mensualidad mensualidadGet(String numero) throws Exception{
+        Mensualidad result=data.getMensualidades().stream().filter(c->c.getNumero().equals(numero)).findFirst().orElse(null);
+        if (result!=null) return result;
+        else throw new Exception("Mensualidad no existe");   
+    }
+      public List<Mensualidad> mensualidadSearch(String numero){
+        List<Mensualidad> result=data.getMensualidades().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
+       return result;        
+    }
+      
+       public List<Mensualidad> mensualidadAll(){
+        return data.getMensualidades();       
+    }
+    
+       public void mensualidadAdd(Mensualidad mensualidad) throws Exception{
+        Mensualidad old=data.getMensualidades().stream().filter(c->c.getNumero().equals(mensualidad.getNumero())).findFirst().orElse(null);
+        if (old==null) data.getMensualidades().add(mensualidad);
+        else throw new Exception("mensualidad ya existe");           
+        
+    }  
+    
+    
+    
+    
        //-------------------------------------------------------------------------
            //Combo Box
     public Provincia buscarProvincia(String nombre){
@@ -132,6 +158,7 @@ public class Service {
         catch(Exception e){
             data =  new Data();
         }
+        }
+        
 
-    }
 }

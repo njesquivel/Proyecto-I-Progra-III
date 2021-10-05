@@ -164,6 +164,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         });
 
         pagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/iconos/pagos.png"))); // NOI18N
+        pagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pagosActionPerformed(evt);
+            }
+        });
 
         regresar.setText("REGRESAR");
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -310,6 +315,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void pagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagosActionPerformed
+        // TODO add your handling code here:
+       controller.pagosShow();
+    }//GEN-LAST:event_pagosActionPerformed
 
     /**
      * @param args the command line arguments

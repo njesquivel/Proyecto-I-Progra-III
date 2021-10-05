@@ -24,10 +24,16 @@ public class Application {
         sistema.presentation.prestamos.Controller controllerprestamo = new sistema.presentation.prestamos.Controller(modelprestamo,viewprestamo);
         PRESTAMO = controllerprestamo;
        // PRESTAMO.show();
+       
+        sistema.presentation.pagos.Model modelpagos=new sistema.presentation.pagos.Model() ;
+        sistema.presentation.pagos.View viewpagos = new sistema.presentation.pagos.View();
+        sistema.presentation.pagos.Controller controllerpagos = new sistema.presentation.pagos.Controller(modelpagos,viewpagos);
+        PAGOS = controllerpagos;
 
          CLIENTES.show();
 
     }
         public static sistema.presentation.clientes.Controller CLIENTES;
         public static sistema.presentation.prestamos.Controller PRESTAMO;
+        public static sistema.presentation.pagos.Controller PAGOS;
 }

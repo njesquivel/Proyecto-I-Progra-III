@@ -86,7 +86,7 @@ public class Prestamo {
             saldo = saldo - amortizacion;
             intereses = saldo * interes/100;
             amortizacion = cuota() - intereses;
-            aux = new Mensualidad(i+1, saldo, intereses, amortizacion);
+            aux = new Mensualidad(String.valueOf(i+1), saldo, intereses, amortizacion);
             listMensualidades.add(aux);
         }
         return listMensualidades.toString();

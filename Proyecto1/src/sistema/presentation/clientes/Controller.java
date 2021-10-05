@@ -136,5 +136,7 @@ public class Controller {
     public void hide(){
         this.view.setVisible(false);
     }
+    
+    
 }
 
