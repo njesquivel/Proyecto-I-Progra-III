@@ -6,18 +6,27 @@
 package sistema.logic;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Prestamo {
+    String numero;
+    String descripción;
     double monto;
     double interes;
     int plazo;
 
-    public Prestamo(double monto, double interes, int plazo) {
+    public Prestamo( String numero,String descripcion,double monto, double interes, int plazo) {
         this.monto = monto;
         this.interes = interes;
         this.plazo = plazo;
+        this.numero=numero;
+        this.descripción=descripcion;
     }
+
+   public Prestamo(){
+       
+   }
 
     public double getMonto() {
         return monto;
@@ -42,10 +51,24 @@ public class Prestamo {
     public void setPlazo(int plazo) {
         this.plazo = plazo;
     }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getDescripción() {
+        return descripción;
+    }
+
+    public void setDescripción(String descripción) {
+        this.descripción = descripción;
+    }
     
-    
-    
-    double cuota(){
+    public double cuota(){
      return ((monto * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
     }
     
@@ -63,6 +86,30 @@ public class Prestamo {
             listMensualidades.add(aux);
         }
         return listMensualidades.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Prestamo other = (Prestamo) obj;
+        if (!Objects.equals(this.numero, other.numero)) {
+            return false;
+        }
+        return true;
     }
 
     @Override

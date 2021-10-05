@@ -129,6 +129,12 @@ public class Controller {
         
         return dist; 
     }
-    
+    public void prestamosShow(){
+        this.hide();
+        Application.PRESTAMO.show();
+    }
+    public void hide(){
+        this.view.setVisible(false);
+    }
 }
 
