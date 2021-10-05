@@ -11,7 +11,7 @@ import javax.swing.table.TableModel;
 import sistema.logic.Prestamo;
 
 public class PrestamosTableModel extends AbstractTableModel implements TableModel {
-    String[] cols ={"Numero","Descrpción","Monto Solicitado","Interes","Plazo","Cuota" };
+    String[] cols ={"Numero","Descrpción","Monto ","Interes","Plazo","Cuota" };
     List<Prestamo> rows;
 
     public  PrestamosTableModel(List<Prestamo> rows){
