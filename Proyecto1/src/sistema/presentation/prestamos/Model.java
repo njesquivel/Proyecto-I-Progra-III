@@ -15,7 +15,7 @@ import sistema.logic.Prestamo;
 public class Model extends Observable {
      // Model attributes here
   
-     Prestamo prestamo;
+    Prestamo prestamo;
     List<Prestamo> prestamos;
     
      // Model gets and sets here

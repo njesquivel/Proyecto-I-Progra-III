@@ -5,6 +5,7 @@
  */
 package sistema.logic;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -69,6 +70,9 @@ public class Prestamo {
     }
     
     public double cuota(){
+       // double mon =((monto * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
+        DecimalFormat df =new DecimalFormat("0.00");
+  
      return ((monto * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
     }
     
