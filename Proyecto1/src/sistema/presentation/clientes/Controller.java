@@ -35,13 +35,7 @@ public class Controller {
     public void show(){
         this.view.setVisible(true);
     }
-    
-    
-      public void hide(){
-        this.view.setVisible(false);
-    }
-    
-          
+       
     
     // Controller methods that respond to View events
     // probably invoke methods from Service,
@@ -135,12 +129,14 @@ public class Controller {
         
         return dist; 
     }
-
-     public void PrestamoShow() {
-         this.hide();
-        
+    public void prestamosShow(){
+        this.hide();
         Application.PRESTAMO.show();
     }
+    public void hide(){
+        this.view.setVisible(false);
+    }
+    
     
 }
 

@@ -21,6 +21,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     Controller controller;
     Model model;
     int x, y;
+    boolean selected = false;
     
     public void setController(Controller controller){
         this.controller=controller;
@@ -92,6 +93,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         canton = new javax.swing.JComboBox<>();
         distrito = new javax.swing.JComboBox<>();
         prestamos = new javax.swing.JButton();
+        limpiarMapa = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,71 +191,83 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         });
 
+        limpiarMapa.setText("Limpiar Mapa");
+        limpiarMapa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarMapaActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Reporte PDF");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(2, 2, 2)))
-                                .addGap(18, 18, 18)
-                                .addComponent(consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(canton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(88, 88, 88)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(mapacrlb, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 38, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(109, 109, 109))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(141, 141, 141))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(prestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mapacrlb, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(prestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(57, 57, 57))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(telefono)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(136, 136, 136)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(canton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(88, 88, 88)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(limpiarMapa))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -263,35 +278,40 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
                                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5)))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(canton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addComponent(mapacrlb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(canton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(68, 68, 68)
                         .addComponent(prestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(60, 60, 60)
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(limpiarMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(mapacrlb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
@@ -324,10 +344,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void mapacrlbMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapacrlbMouseMoved
         // TODO add your handling code here:
-           
+        
         x = evt.getX();
         y = evt.getY();
      //   System.out.println("(" + x + ", " + y + ")");
+     if (!selected){
         if (x > 40 && x < 140 && y > 16 && y < 133) {//Guanacaste
             mapacrlb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/provincias/Guanacaste.png")));
        
@@ -361,75 +382,85 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         }
     }//GEN-LAST:event_mapacrlbMouseMoved
-
+    }
     private void mapacrlbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapacrlbMouseClicked
         // TODO add your handling code here:
-         canton.setModel(new javax.swing.DefaultComboBoxModel<>(new String []{}));
-         distrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String []{}));
+        if(!selected){ 
+        canton.setModel(new javax.swing.DefaultComboBoxModel<>(new String []{}));
+        distrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String []{}));
         x = evt.getX();
         y = evt.getY();
        // distrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{}));
-        if (x > 40 && x < 140 && y > 16 && y < 133) {//Guanacaste
-            provincia.setText("Guanacaste");
-
-            try {
-                canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Guanacaste")));
-            } catch (Exception ex) {
-                Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        } else {
-            if (x > 140 && x < 240 && y > 16 && y < 150) {//Alajuela
-                provincia.setText("Alajuela");
-                
+       
+           if (x > 40 && x < 140 && y > 16 && y < 133) {//Guanacaste
+                provincia.setText("Guanacaste");
+                selected = true;
                 try {
-                    canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Alajuela")));
+                    canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Guanacaste")));
                 } catch (Exception ex) {
                     Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            
             } else {
-                if (x > 240 && x < 272 && y > 16 && y < 150) {//Heredia
-                    provincia.setText("Heredia");
+                if (x > 140 && x < 240 && y > 16 && y < 150) {//Alajuela
+                    provincia.setText("Alajuela");
+                    selected = true;            
                     try {
-                        canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Heredia")));
+                        canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Alajuela")));
                     } catch (Exception ex) {
                         Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    if (x > 272 && x < 340 && y > 16 && y < 150 || x > 326 && x < 440 && y > 160 && y < 235) {//Limon
-                        provincia.setText("Limón");
+                    if (x > 240 && x < 272 && y > 16 && y < 150) {//Heredia
+                        provincia.setText("Heredia");
+                        selected = true; 
                         try {
-                            canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Limón")));
+                            canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Heredia")));
                         } catch (Exception ex) {
                             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else {
-                        if (x > 269 && x < 320 && y > 140 && y < 190) {//Cartago
-                            provincia.setText("Cartago");
+                        if (x > 272 && x < 340 && y > 16 && y < 150 || x > 326 && x < 440 && y > 160 && y < 235) {//Limon
+                            provincia.setText("Limón");
+                            selected = true; 
                             try {
-                                canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Cartago")));
+                                canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Limón")));
                             } catch (Exception ex) {
                                 Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         } else {
-                            if (x > 260 && x < 320 && y > 200 && y < 225 || x > 198 && x < 269 && y > 153 && y < 180 || x > 236 && x < 280 && y > 180 && y < 200) {//SJ
-                                provincia.setText("San José");
+                            if (x > 269 && x < 320 && y > 140 && y < 190) {//Cartago
+                                provincia.setText("Cartago");
+                                selected = true; 
                                 try {
-                                    canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("San José")));
+                                    canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Cartago")));
                                 } catch (Exception ex) {
                                     Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             } else {
-                                if (x > 100 && x < 400 && y > 240 && y < 350 || x > 100 && x < 260 && y > 200 && y < 220 || x > 100 && x < 190 && y > 133 && y < 200) {//punta
-                                    provincia.setText("Puntarenas");
+                                if (x > 260 && x < 320 && y > 200 && y < 225 || x > 198 && x < 269 && y > 153 && y < 180 || x > 236 && x < 280 && y > 180 && y < 200) {//SJ
+                                    provincia.setText("San José");
+                                    selected = true; 
                                     try {
-                                        canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Puntarenas")));
+                                        canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("San José")));
                                     } catch (Exception ex) {
                                         Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 } else {
-                                    mapacrlb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/provincias/mapa.png")));
+                                    if (x > 100 && x < 400 && y > 240 && y < 350 || x > 100 && x < 260 && y > 200 && y < 220 || x > 100 && x < 190 && y > 133 && y < 200) {//punta
+                                        provincia.setText("Puntarenas");
+                                        selected = true; 
+                                        try {
+                                            canton.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Cantones("Puntarenas")));
+                                        } catch (Exception ex) {
+                                            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                    } else {
+                                        mapacrlb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/presentation/provincias/mapa.png")));
+                                        selected = false;
+                                    }
                                 }
+
                             }
 
                         }
@@ -437,15 +468,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                     }
 
                 }
-
             }
         }
-        
     }//GEN-LAST:event_mapacrlbMouseClicked
 
     private void cantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantonActionPerformed
         // TODO add your handling code here:
-          String x = String.valueOf(canton.getSelectedItem());
+        String x = String.valueOf(canton.getSelectedItem());
+          
              try {
                     distrito.setModel(new javax.swing.DefaultComboBoxModel<>(controller.Distritos(provincia.getText(),x)));
                 } catch (Exception ex) {
@@ -453,9 +483,21 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 }
     }//GEN-LAST:event_cantonActionPerformed
 
+    private void limpiarMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarMapaActionPerformed
+        selected = false;
+        canton.setModel(new javax.swing.DefaultComboBoxModel<>(new String []{}));
+        distrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String []{}));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_limpiarMapaActionPerformed
+
     private void prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamosActionPerformed
-      controller.PrestamoShow();
+        // TODO add your handling code here:
+      controller.prestamosShow();
     }//GEN-LAST:event_prestamosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     public static void main(String args[]) {
@@ -497,6 +539,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTable clientes;
     private javax.swing.JButton consultar;
     private javax.swing.JComboBox<String> distrito;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -504,6 +547,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton limpiarMapa;
     private javax.swing.JButton listar;
     private javax.swing.JLabel mapacrlb;
     private javax.swing.JTextField nombre;

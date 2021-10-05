@@ -27,7 +27,6 @@ public class Service {
       
       // Service methods
       //----------------------------Cliente-----------------------------------------------------
-      
     public Cliente clienteGet(String cedula) throws Exception{
         Cliente result=data.getClientes().stream().filter(c->c.getCedula().equals(cedula)).findFirst().orElse(null);
         if (result!=null) return result;
@@ -49,7 +48,6 @@ public class Service {
         
     }  
     //---------------------------Provincias---------------------------------------------------
-    //combo Box
       public ArrayList<Canton> provincias(String nombre) throws Exception{
        ArrayList<Provincia> PS=(ArrayList) data.getProvincias();
         for(Provincia  p : PS ){
@@ -68,7 +66,57 @@ public class Service {
        public List<Distrito> distritoAll(){
         return data.getDistritos();       
     }
-       //Combo Box 
+    
+    //-----------------------------Prestamos-----------------------------------------------------
+       
+        public Prestamo prestamoGet(String numero) throws Exception{
+        Prestamo result=data.getPrestamos().stream().filter(c->c.getNumero().equals(numero)).findFirst().orElse(null);
+        if (result!=null) return result;
+        else throw new Exception("Prestamo no existe");   
+    }
+      public List<Prestamo> prestamoSearch(String numero){
+        List<Prestamo> result=data.getPrestamos().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
+       return result;        
+    }
+    
+    public List<Prestamo> prestamoAll(){
+        return data.getPrestamos();       
+    }
+    
+    public void prestamoAdd(Prestamo prestamo) throws Exception{
+        Prestamo old=data.getPrestamos().stream().filter(c->c.getNumero().equals(prestamo.getNumero())).findFirst().orElse(null);
+        if (old==null) data.getPrestamos().add(prestamo);
+        else throw new Exception("Prestamo ya existe");           
+        
+    }  
+    
+    //-----------------------------Mensualidad-----------------------------------------------------
+       public Mensualidad mensualidadGet(String numero) throws Exception{
+        Mensualidad result=data.getMensualidades().stream().filter(c->c.getNumero().equals(numero)).findFirst().orElse(null);
+        if (result!=null) return result;
+        else throw new Exception("Mensualidad no existe");   
+    }
+      public List<Mensualidad> mensualidadSearch(String numero){
+        List<Mensualidad> result=data.getMensualidades().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
+       return result;        
+    }
+      
+       public List<Mensualidad> mensualidadAll(){
+        return data.getMensualidades();       
+    }
+    
+       public void mensualidadAdd(Mensualidad mensualidad) throws Exception{
+        Mensualidad old=data.getMensualidades().stream().filter(c->c.getNumero().equals(mensualidad.getNumero())).findFirst().orElse(null);
+        if (old==null) data.getMensualidades().add(mensualidad);
+        else throw new Exception("mensualidad ya existe");           
+        
+    }  
+    
+    
+    
+    
+       //-------------------------------------------------------------------------
+           //Combo Box
     public Provincia buscarProvincia(String nombre){
         for(int i = 0;i < provinciaAll().size();i++){
             if(provinciaAll().get(i).getNombre().equals(nombre)){
@@ -77,7 +125,7 @@ public class Service {
         }
         return null;
     }
-    
+
       public Canton buscarCanton(String nombre){
         for(int i = 0;i < cantonAll().size();i++){
             if(cantonAll().get(i).getNombre().equals(nombre)){
@@ -94,9 +142,8 @@ public class Service {
         }
         return null;
     }
-     
-    //------------------------------------------------------------------------------------------
-        //service
+       
+       //---------------------------------------------------------------------------------------
        public void store(){
         try {
             XmlPersister.instance().store(data);
@@ -111,6 +158,7 @@ public class Service {
         catch(Exception e){
             data =  new Data();
         }
+        }
+        
 
-    }
 }
