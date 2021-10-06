@@ -58,7 +58,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
    
         @Override
     public void update(Observable o, Object arg) {
+        
         Prestamo cliente = model.getPrestamo();
+        Cliente c = model.getCliente();
         numero.setText(cliente.getNumero());
         descripcion.setSelectedItem(cliente.getDescripción());
         monto.setText(""+cliente.getMonto());
@@ -67,8 +69,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         prestamos.setModel(new PrestamosTableModel(model.getPrestamos()));
         if(model.getCliente()!=null){
             clienteInfo.setText(model.getCliente().getCedula());
+            llenar(c);
         }
         
+    }
+    public void llenar(Cliente cliente){
+       clienteInfo.setText("Cliente: "+cliente.getNombre()+", Cedula: "+cliente.getCedula());   
     }
 
     /**
