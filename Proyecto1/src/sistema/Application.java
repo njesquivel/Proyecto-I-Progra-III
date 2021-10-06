@@ -23,7 +23,6 @@ public class Application {
         sistema.presentation.prestamos.View viewprestamo = new sistema.presentation.prestamos.View();
         sistema.presentation.prestamos.Controller controllerprestamo = new sistema.presentation.prestamos.Controller(modelprestamo,viewprestamo);
         PRESTAMO = controllerprestamo;
-        PRESTAMO.show();
        
         sistema.presentation.pagos.Model modelpagos=new sistema.presentation.pagos.Model() ;
         sistema.presentation.pagos.View viewpagos = new sistema.presentation.pagos.View();
