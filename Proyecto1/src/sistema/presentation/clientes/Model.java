@@ -8,6 +8,7 @@ package sistema.presentation.clientes;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import sistema.Application;
 import sistema.logic.Canton;
 import sistema.logic.Cliente;
 import sistema.logic.Distrito;
@@ -28,6 +29,7 @@ public class Model extends Observable{
 
     public void setCantones(List<Canton> cantones) {
         this.cantones = cantones;
+        
     }
 
     public List<Distrito> getDistritos() {
@@ -45,6 +47,7 @@ public class Model extends Observable{
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+ 
     }
 
     public List<Cliente> getClientes() {

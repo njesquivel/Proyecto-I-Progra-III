@@ -4,82 +4,42 @@
  * and open the template in the editor.
  */
 package sistema.presentation.pagos;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import sistema.Application;
-//import static sistema.Application.CLIENTES;
-//import sistema.logic.Cliente;
+import sistema.logic.Cliente;
 import sistema.logic.Mensualidad;
-import sistema.logic.Service;
+import sistema.logic.Prestamo;
+
 
 public class Controller {
-     Model model;
-      View view;
-      
-      public Controller(Model model, View view) {
+    Model model;
+    View view;
+    
+       public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
         // invoke Model sets for initialization before linking to the view
         // problably get the data from Service
-        model.setMensualidad(new Mensualidad());
-        model.setMensualidades(new ArrayList<>());
+        model.setPago(new Mensualidad());
+        model.setPagos(new ArrayList<>());
         
         view.setModel(model);
         view.setController(this);
     }
-    
-      
-       public void hide(){
-        this.view.setVisible(false);
-        Application.CLIENTES.show();
-    }    
-      
-       public void show(){
+       //Para pasar el cliente a prestamos 
+       public void show(Prestamo prestamo){
         this.view.setVisible(true);
-    }
-    
-       //-------------
+        model.setPrestamo(prestamo);
+        view.getPrestamoinfo().setText("Prestamo: "+model.getPrestamo().getNumero());
        
-        public void MensualidaGet(String numero){
-        try {
-            Mensualidad mensualidad = Service.instance().mensualidadGet(numero);
-            model.setMensualidad(mensualidad);
-            model.setMensualidades(Arrays.asList(mensualidad));
-            model.commit();
-        } catch (Exception ex) {
-            model.setMensualidad(new Mensualidad());
-            model.setMensualidades(new ArrayList<>());
-            model.commit();
-        }
     }
-    
-    public void mensualidadSearch(String numero){
-        List<Mensualidad> mensualidas= Service.instance().mensualidadSearch(numero);
-        model.setMensualidad(new Mensualidad(numero,0,0,0));
-        model.setMensualidades(mensualidas);
-        model.commit();
-    }
-    
-    public void mensualidadEdit(int row){
-       Mensualidad mensualidad = model.getMensualidades().get(row);
-         Service.instance().store();
-        model.setMensualidad(mensualidad);
-        model.commit();
-    }
-    
-    public void prestamoAdd(Mensualidad mensualidad){
-        try {
-            Service.instance().mensualidadAdd(mensualidad);
-             Service.instance().store();
-            model.setMensualidad(new Mensualidad("",0,0,0));
-            model.setMensualidades(Arrays.asList(mensualidad));
-            model.commit();
-        } catch (Exception ex) {
-            
-        }
+       
+      
+        public void hide(){
+        this.view.setVisible(false);
+        Application.PRESTAMO.show();
+    }  
+      
         
-    }
-       
-    
 }

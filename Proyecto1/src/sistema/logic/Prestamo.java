@@ -8,11 +8,18 @@ package sistema.logic;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Prestamo {
+    @XmlID  
     String numero;
     String descripción;
+    @XmlIDREF
+    Cliente cliente;
     double monto;
     double interes;
     int plazo;
@@ -23,6 +30,23 @@ public class Prestamo {
         this.plazo = plazo;
         this.numero=numero;
         this.descripción=descripcion;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Prestamo(String numero, String descripción, Cliente cliente, double monto, double interes, int plazo) {
+        this.numero = numero;
+        this.descripción = descripción;
+        this.cliente = cliente;
+        this.monto = monto;
+        this.interes = interes;
+        this.plazo = plazo;
     }
 
    public Prestamo(){

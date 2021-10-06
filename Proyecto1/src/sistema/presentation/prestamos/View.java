@@ -10,7 +10,9 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.Observable;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import sistema.Application;
 import sistema.logic.Cliente;
 import sistema.logic.Prestamo;
 import sistema.presentation.clientes.ClientesTableModel;
@@ -63,6 +65,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         plazo.setText(""+cliente.getPlazo());
         interes.setText(""+cliente.getPlazo());
         prestamos.setModel(new PrestamosTableModel(model.getPrestamos()));
+        if(model.getCliente()!=null){
+            clienteInfo.setText(model.getCliente().getCedula());
+        }
         
     }
 
@@ -75,7 +80,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        clienteInfo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         numero = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -97,8 +102,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
-        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        clienteInfo.setText("jLabel1");
+        clienteInfo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("Numero de Prestamo:");
@@ -214,7 +219,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clienteInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -229,7 +234,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(clienteInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -300,7 +305,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
         try{  
-        controller.prestamoAdd(new Prestamo(numero.getText(), (String) descripcion.getSelectedItem(),Double.parseDouble(monto.getText()),Double.parseDouble(interes.getText()),Integer.parseInt(plazo.getText())));
+        controller.prestamoAdd(new Prestamo(numero.getText(), (String) descripcion.getSelectedItem(),model.getCliente(),Double.parseDouble(monto.getText()),Double.parseDouble(interes.getText()),Integer.parseInt(plazo.getText())));
         }catch(Exception ex){
         JOptionPane.showMessageDialog(null,ex.getMessage());
         
@@ -355,14 +360,22 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         });
     }
+    //para pasar el cliente a prestamos 
+    public JLabel getClienteInfo() {
+        return clienteInfo;
+    }
+
+    public void setClienteInfo(JLabel clienteInfo) {
+        this.clienteInfo = clienteInfo;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel clienteInfo;
     private javax.swing.JButton consultar;
     private javax.swing.JComboBox<String> descripcion;
     private javax.swing.JButton guardar;
     private javax.swing.JTextField interes;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

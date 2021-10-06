@@ -8,29 +8,47 @@ package sistema.presentation.pagos;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import sistema.logic.Cliente;
 import sistema.logic.Mensualidad;
+import sistema.logic.Prestamo;
 
+/**
+ *
+ * @author ESCINF
+ */
 public class Model extends Observable {
-    Mensualidad mensualidad;
-    List<Mensualidad> mensualidades;
+   Mensualidad pago;
+   List<Mensualidad> pagos;
+   
+    //Prestamo para pagos
+   Prestamo prestamo;
 
-    public Mensualidad getMensualidad() {
-        return mensualidad;
+    public Mensualidad getPago() {
+        return pago;
     }
 
-    public void setMensualidad(Mensualidad mensualidad) {
-        this.mensualidad = mensualidad;
+    public void setPago(Mensualidad pago) {
+        this.pago = pago;
     }
 
-    public List<Mensualidad> getMensualidades() {
-        return mensualidades;
+    public List<Mensualidad> getPagos() {
+        return pagos;
     }
 
-    public void setMensualidades(List<Mensualidad> mensualidades) {
-        this.mensualidades = mensualidades;
+    public void setPagos(List<Mensualidad> pagos) {
+        this.pagos = pagos;
     }
-    
-     @Override
+
+    public Prestamo getPrestamo() {
+        return prestamo;
+    }
+
+    //Prestamo para pagos
+    public void setPrestamo(Prestamo prestamo) {
+        this.prestamo = prestamo;
+    }
+ 
+      @Override
     public synchronized void addObserver(Observer o) {
         super.addObserver(o); 
         this.commit();
@@ -40,5 +58,6 @@ public class Model extends Observable {
         this.setChanged();
         this.notifyObservers();
     }
+    
     
 }

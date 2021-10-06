@@ -31,14 +31,20 @@ public class Controller {
         view.setModel(model);
         view.setController(this);
     }
+        public void show(){
+        this.view.setVisible(true);
+    }
       
        public void hide(){
         this.view.setVisible(false);
         Application.CLIENTES.show();
     }    
-      
-       public void show(){
+      //Para pasar el cliente a prestamos 
+       public void show(Cliente cliente){
         this.view.setVisible(true);
+        model.setCliente(cliente);
+        view.getClienteInfo().setText("Cliente: "+model.getCliente().getNombre()+ ", Cedula: "+model.getCliente().getCedula());
+       
     }
        //-----------------------------------------------------------------------------
        public void prestamoGet(String numero){
@@ -81,10 +87,11 @@ public class Controller {
         
     }
     
-    
+    //recordar por parametro model.
     public void pagosShow(){
         this.hide();
-        Application.PAGOS.show();
+        Application.PAGOS.show( model.getPrestamo());
     }
+   
   
 }

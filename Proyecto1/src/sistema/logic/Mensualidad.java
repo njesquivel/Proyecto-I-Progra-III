@@ -6,7 +6,8 @@
 package sistema.logic;
 
 public class Mensualidad {
-      String numero;
+    
+    String numero;
     double saldo;
     double interes;
     double amortizacion;

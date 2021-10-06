@@ -53,7 +53,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="263" max="-2" attributes="0"/>
+                      <Component id="clienteInfo" min="-2" pref="263" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -74,7 +74,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="clienteInfo" min="-2" pref="26" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="consultar" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
@@ -141,7 +141,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="clienteInfo">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

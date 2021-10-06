@@ -14,16 +14,24 @@ import sistema.logic.Prestamo;
 
 public class Model extends Observable {
      // Model attributes here
-  
+    
     Prestamo prestamo;
     List<Prestamo> prestamos;
-    
+    //cliente para prestamos
+    Cliente cliente;
      // Model gets and sets here
 
     public Prestamo getPrestamo() {
         return prestamo;
     }
+    public Cliente getCliente() {
+        return cliente;
+    }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+ 
+    }
     public void setPrestamo(Prestamo prestamo) {
         this.prestamo = prestamo;
     }

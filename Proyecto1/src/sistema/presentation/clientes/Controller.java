@@ -129,9 +129,10 @@ public class Controller {
         
         return dist; 
     }
+    //recordar por parametro model.
     public void prestamosShow(){
         this.hide();
-        Application.PRESTAMO.show();
+        Application.PRESTAMO.show( model.getCliente());
     }
     public void hide(){
         this.view.setVisible(false);
