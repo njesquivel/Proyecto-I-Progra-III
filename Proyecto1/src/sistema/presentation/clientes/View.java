@@ -135,6 +135,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Cedula");
@@ -541,6 +546,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_reporteActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        controller.exit();
+    }//GEN-LAST:event_formWindowClosing
 
 
     public static void main(String args[]) {

@@ -76,7 +76,6 @@ public class Controller {
     
     public void prestamoEdit(int row){
         Prestamo prestamo = model.getPrestamos().get(row);
-         Service.instance().store();
         model.setPrestamo(prestamo);
         model.commit();
     }
@@ -84,7 +83,6 @@ public class Controller {
     public void prestamoAdd(Prestamo prestamo){
         try {
             Service.instance().prestamoAdd(prestamo);
-             Service.instance().store();
             model.setPrestamo(new Prestamo("","",0,0,0));
             model.setPrestamos(Arrays.asList(prestamo));
             model.commit();

@@ -67,7 +67,6 @@ public class Controller {
     
     public void clienteEdit(int row){
         Cliente cliente = model.getClientes().get(row);
-        Service.instance().store();
         model.setCliente(cliente);
         model.commit();
     }
@@ -75,7 +74,6 @@ public class Controller {
     public void clienteAdd(Cliente cliente){
         try {
             Service.instance().clienteAdd(cliente);
-            Service.instance().store();
             model.setCliente(new Cliente("","",""));
             model.setClientes(Arrays.asList(cliente));
             model.commit();
@@ -150,6 +148,9 @@ public class Controller {
         this.view.setVisible(false);
     }
     
+    public void exit(){
+        Service.instance().store();
+    }
     
 }
 

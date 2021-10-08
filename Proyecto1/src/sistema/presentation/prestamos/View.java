@@ -72,7 +72,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         //pruebas
         if(model.getCliente()!=null){
             clienteInfo.setText(model.getCliente().getCedula());
-            llenar(cliente);
+            //llenar(cliente);
         }
         
     }
@@ -301,7 +301,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
         // TODO add your handling code here:
-         controller.prestamoSearch(numero.getText());
+         controller.prestamoSearch("666");
     }//GEN-LAST:event_listarActionPerformed
 
     private void prestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prestamosMouseClicked
@@ -313,15 +313,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        if (("Cliente: "+model.getCliente().getNombre()+", Cedula: "+model.getCliente().getCedula()) == clienteInfo.getText()){
-            if(!"".equals(numero.getText())&&!"".equals(descripcion.getSelectedItem())&& !"".equals(monto.getText())&&!"".equals(interes.getText())&& !"".equals(plazo.getText()))  {
+
+        if(!"".equals(numero.getText())&&!"".equals(descripcion.getSelectedItem())&& !"".equals(monto.getText())&&!"".equals(interes.getText())&& !"".equals(plazo.getText()))  {
         controller.prestamoAdd(new Prestamo(numero.getText(), (String) descripcion.getSelectedItem(),model.getCliente(),Double.parseDouble(monto.getText()),Double.parseDouble(interes.getText()),Integer.parseInt(plazo.getText())));
          JOptionPane.showMessageDialog(null,"Operación realizada correctamente", "Exitoso",JOptionPane.INFORMATION_MESSAGE);
         }else{
         
         JOptionPane.showMessageDialog(null,"Existen campos invalidos ", "ERROR",JOptionPane.ERROR_MESSAGE);
         
-        }
         }
     }//GEN-LAST:event_guardarActionPerformed
 

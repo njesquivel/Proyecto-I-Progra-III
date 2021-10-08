@@ -16,27 +16,41 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Prestamo {
+    List<Pago> pagos;
     @XmlID  
     String numero;
-    String descripción;
-    @XmlIDREF
-    private List<Pago> pagos;
-    Cliente cliente;
+    String descripción; 
     double saldo;
     double monto;
     double interes;
     int plazo;
+    @XmlIDREF
+    Cliente cliente;
 
-    public Prestamo( String numero,String descripcion,double monto, double interes, int plazo) {
+    public Prestamo(String numero, String descripción, Cliente cliente, double monto, double interes, int plazo) {
+        this.numero = numero;
+        this.descripción = descripción;
+        this.saldo = monto;
+        this.monto = monto;
+        this.interes = interes;
+        this.plazo = plazo;
+        this.cliente = cliente;
+    }
+
+
+    
+    public Prestamo(String numero, String descripción, double monto, double interes, int plazo) {
+        this.numero = numero;
+        this.descripción = descripción;
+        this.cliente = new Cliente("","","");
         this.monto = monto;
         this.saldo = monto;
         this.interes = interes;
         this.plazo = plazo;
-        this.numero=numero;
-        this.descripción=descripcion;
     }
 
-    public List<Pago> getPagos() {
+
+   public List<Pago> getPagos() {
         return pagos;
     }
 
@@ -53,15 +67,7 @@ public class Prestamo {
         this.cliente = cliente;
     }
 
-    public Prestamo(String numero, String descripción, Cliente cliente, double monto, double interes, int plazo) {
-        this.numero = numero;
-        this.descripción = descripción;
-        this.cliente = cliente;
-        this.monto = monto;
-        this.saldo = monto;
-        this.interes = interes;
-        this.plazo = plazo;
-    }
+
 
    public Prestamo(){
        
