@@ -11,7 +11,8 @@ import java.util.Observer;
 import sistema.logic.Cliente;
 import sistema.logic.Pago;
 import sistema.logic.Prestamo;
-
+import sistema.logic.Cliente;
+import sistema.logic.Pago;
 /**
  *
  * @author ESCINF
