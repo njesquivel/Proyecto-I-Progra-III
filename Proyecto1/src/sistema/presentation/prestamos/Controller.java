@@ -43,7 +43,7 @@ public class Controller {
        public void show(Cliente cliente){
         this.view.setVisible(true);
         model.setCliente(cliente);
-        view.getClienteInfo().setText("Cliente: "+model.getCliente().getNombre()+ ", Cedula: "+model.getCliente().getCedula());
+        view.getClienteInfo().setText("Cliente: "+cliente.getNombre()+", Cedula: "+cliente.getCedula());
        
     }
        //-----------------------------------------------------------------------------
@@ -62,7 +62,14 @@ public class Controller {
     
     public void  prestamoSearch(String numero){
         List<Prestamo> prestamos= Service.instance().prestamoSearch(numero);
-        model.setPrestamo(new Prestamo(numero,"",0,0,0));
+      //List<Prestamo> pres;
+       // String numP;
+       // pres =Service.instance().buscarPrestamo(numero);
+       // numP=pres.getNumero();
+        //List<Prestamo> prestamos= Service.instance().prestamoSearch(numP);
+         
+        // cambios
+        model.setPrestamo(new Prestamo("","",0,0,0));
         model.setPrestamos(prestamos);
         model.commit();
     }

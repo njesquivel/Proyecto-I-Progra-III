@@ -5,6 +5,7 @@
  */
 package sistema.presentation.clientes;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -83,6 +84,17 @@ public class Controller {
         }
         
     }
+    //--------------PDF----------------------//
+     
+     public static final String DEST = "Clientes.pdf";
+    public void PDFCLIENTE() throws IOException{
+        
+        Service.instance().CrearPDFcliente(DEST,model.getCliente());
+        //model.setCliente(cliente);
+        
+    }
+    
+    
     //Combo Box-------------------------------------------------------------------------
     public Provincia getProvincia(String nombre){
         return Service.instance().buscarProvincia(nombre);

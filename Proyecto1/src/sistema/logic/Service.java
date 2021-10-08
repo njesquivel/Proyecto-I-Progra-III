@@ -5,11 +5,31 @@
  */
 package sistema.logic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import sistema.data.Data;
 import sistema.data.XmlPersister;
+
+
+//bibliotecas para PDF
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.colors.Color;
+import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.*;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import java.io.*;
 
 
 public class Service {
@@ -75,7 +95,9 @@ public class Service {
         else throw new Exception("Prestamo no existe");   
     }
       public List<Prestamo> prestamoSearch(String numero){
-        List<Prestamo> result=data.getPrestamos().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
+          List<Prestamo> result=data.getPrestamos().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
+       //List<Prestamo> result=data.getPrestamos().stream().filter(c->c.getCliente().getCedula()..collect(Collectors.toList());
+       
        return result;        
     }
     
@@ -89,6 +111,10 @@ public class Service {
         else throw new Exception("Prestamo ya existe");           
         
     }  
+    
+    /// pruebas 
+    
+  
     
     //-----------------------------Mensualidad-----------------------------------------------------
        public Mensualidad mensualidadGet(String numero) throws Exception{
@@ -159,6 +185,60 @@ public class Service {
             data =  new Data();
         }
         }
+    
+    
+    //------------------------------PDF-------------------//
+       
+    
+        public void CrearPDFcliente(String dest,Cliente cliente) throws IOException{
+        PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+        PdfWriter writer = new PdfWriter(dest);
+        PdfDocument pdf = new PdfDocument(writer);
+        Document document = new Document(pdf, PageSize.A4.rotate());
+        document.setMargins(20, 20, 20, 20);
+       
         
-
+        ImageData data = ImageDataFactory.create("logo.png");        
+        Image img = new Image(data); 
+        document.add(img);
+        
+        document.add(new Paragraph(""));
+        
+        document.add(new Paragraph("Clientes Banco S.A ").setFont(font).setBold().setFontSize(20f));
+        
+        Table table = new Table(6); // tabla 
+        Cell c; 
+        Color blanco= ColorConstants.WHITE;
+        Color negro= ColorConstants.BLACK;
+        c= new Cell(); c.add(new Paragraph("Cedula")).setBackgroundColor(blanco).setFontColor(negro); 
+        table.addHeaderCell(c);
+        c= new Cell(); c.add(new Paragraph("Nombre")).setBackgroundColor(blanco).setFontColor(negro);
+        table.addHeaderCell(c);     
+        c= new Cell(); c.add(new Paragraph("Telefono")).setBackgroundColor(blanco).setFontColor(negro);
+        table.addHeaderCell(c); 
+        c= new Cell(); c.add(new Paragraph("Provincia")).setBackgroundColor(blanco).setFontColor(negro);
+        table.addHeaderCell(c); 
+        c= new Cell(); c.add(new Paragraph("Canton")).setBackgroundColor(blanco).setFontColor(negro);
+        table.addHeaderCell(c);
+        c= new Cell(); c.add(new Paragraph("Distrito")).setBackgroundColor(blanco).setFontColor(negro);
+        table.addHeaderCell(c); 
+      
+        List<Cliente> lista=this.clienteAll();
+        for(Cliente c1:lista){
+          
+            table.addHeaderCell(c1.getCedula());
+            table.addHeaderCell(c1.getNombre());
+            table.addHeaderCell(c1.getTelefono());  
+            table.addHeaderCell(c1.getProvincia().getNombre());             
+            table.addHeaderCell(String.valueOf(c1.getCanton()));
+            table.addHeaderCell(String.valueOf(c1.getDistrito()));
+          
+            }
+           
+        document.add(table);
+        document.close();
+        }
+        
+        
+    
 }

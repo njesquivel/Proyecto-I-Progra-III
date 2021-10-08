@@ -5,6 +5,7 @@
  */
 package sistema.presentation.prestamos;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
@@ -31,14 +32,15 @@ public class PrestamosTableModel extends AbstractTableModel implements TableMode
     }
     
     public Object getValueAt(int row, int col) {
+        DecimalFormat formato1 = new DecimalFormat("#.00");
         Prestamo c = rows.get(row);
         switch (col){
-            case 0: return c.getNumero();
+          case 0: return c.getNumero();
             case 1:return c.getDescripción();
-            case 2:return c.getMonto();
+            case 2:return formato1.format(c.getMonto());
             case 3:return c.getInteres();
-            case 4:return c.getPlazo();
-            case 5:return c.cuota();
+            case 4:return c.getPlazo();   
+            case 5:return  formato1.format( c.cuota());
             default: return "";
         }
     }    

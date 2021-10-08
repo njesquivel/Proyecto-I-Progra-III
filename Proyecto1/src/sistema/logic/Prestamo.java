@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
+import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Prestamo {
@@ -19,18 +20,30 @@ public class Prestamo {
     String numero;
     String descripción;
     @XmlIDREF
+    private List<Pago> pagos;
     Cliente cliente;
+    double saldo;
     double monto;
     double interes;
     int plazo;
 
     public Prestamo( String numero,String descripcion,double monto, double interes, int plazo) {
         this.monto = monto;
+        this.saldo = monto;
         this.interes = interes;
         this.plazo = plazo;
         this.numero=numero;
         this.descripción=descripcion;
     }
+
+    public List<Pago> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
+    }
+    
 
     public Cliente getCliente() {
         return cliente;
@@ -45,6 +58,7 @@ public class Prestamo {
         this.descripción = descripción;
         this.cliente = cliente;
         this.monto = monto;
+        this.saldo = monto;
         this.interes = interes;
         this.plazo = plazo;
     }
@@ -97,7 +111,7 @@ public class Prestamo {
        // double mon =((monto * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
         DecimalFormat df =new DecimalFormat("0.00");
   
-     return ((monto * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
+     return ((saldo * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
     }
     
     String mensualidades(){
@@ -115,6 +129,7 @@ public class Prestamo {
         }
         return listMensualidades.toString();
     }
+    
 
     @Override
     public int hashCode() {

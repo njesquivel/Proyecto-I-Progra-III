@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import sistema.Application;
 import sistema.logic.Cliente;
 import sistema.logic.Prestamo;
+import sistema.logic.Service;
 import sistema.presentation.clientes.ClientesTableModel;
 
 
@@ -59,17 +60,19 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         @Override
     public void update(Observable o, Object arg) {
         
-        Prestamo cliente = model.getPrestamo();
-        Cliente c = model.getCliente();
-        numero.setText(cliente.getNumero());
-        descripcion.setSelectedItem(cliente.getDescripción());
-        monto.setText(""+cliente.getMonto());
-        plazo.setText(""+cliente.getPlazo());
-        interes.setText(""+cliente.getPlazo());
+        Prestamo prestamo = model.getPrestamo();
+        Cliente cliente = model.getCliente();
+        numero.setText(prestamo.getNumero());
+        descripcion.setSelectedItem(prestamo.getDescripción());
+        monto.setText(""+prestamo.getMonto());
+        plazo.setText(""+prestamo.getPlazo());
+        interes.setText(""+prestamo.getPlazo());
         prestamos.setModel(new PrestamosTableModel(model.getPrestamos()));
+        
+        //pruebas
         if(model.getCliente()!=null){
             clienteInfo.setText(model.getCliente().getCedula());
-            llenar(c);
+            llenar(cliente);
         }
         
     }
@@ -310,11 +313,15 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        try{  
+        if (("Cliente: "+model.getCliente().getNombre()+", Cedula: "+model.getCliente().getCedula()) == clienteInfo.getText()){
+            if(!"".equals(numero.getText())&&!"".equals(descripcion.getSelectedItem())&& !"".equals(monto.getText())&&!"".equals(interes.getText())&& !"".equals(plazo.getText()))  {
         controller.prestamoAdd(new Prestamo(numero.getText(), (String) descripcion.getSelectedItem(),model.getCliente(),Double.parseDouble(monto.getText()),Double.parseDouble(interes.getText()),Integer.parseInt(plazo.getText())));
-        }catch(Exception ex){
-        JOptionPane.showMessageDialog(null,ex.getMessage());
+         JOptionPane.showMessageDialog(null,"Operación realizada correctamente", "Exitoso",JOptionPane.INFORMATION_MESSAGE);
+        }else{
         
+        JOptionPane.showMessageDialog(null,"Existen campos invalidos ", "ERROR",JOptionPane.ERROR_MESSAGE);
+        
+        }
         }
     }//GEN-LAST:event_guardarActionPerformed
 
