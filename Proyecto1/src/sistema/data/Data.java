@@ -15,19 +15,19 @@ import sistema.logic.Cliente;
 import sistema.logic.Distrito;
 import sistema.logic.Prestamo;
 import sistema.logic.Provincia;
+import sistema.logic.Mensualidad;
 import sistema.logic.Pago;
 
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Data {
+    private List<Cliente> clientes;    
     private List<Provincia> provincias;
     private List<Canton> cantones;
     private List<Distrito> distritos;
-    private List<Cliente> clientes;   
     private List<Prestamo> prestamos;
     private List<Pago> pagos;
-     
     
     public Data() {
         clientes = new ArrayList<>();
@@ -38,15 +38,6 @@ public class Data {
         pagos= new ArrayList<>();
         
     }
-
-    public List<Pago> getPagos() {
-        return pagos;
-    }
-
-    public void setPagos(List<Pago> pagos) {
-        this.pagos = pagos;
-    }
-
     
 
     public List<Canton> getCantones() {
@@ -87,6 +78,14 @@ public class Data {
 
     public void setPrestamos(List<Prestamo> prestamos) {
         this.prestamos = prestamos;
+    }
+
+    public List<Pago> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
     }
    
     
