@@ -5,6 +5,7 @@
  */
 package sistema.presentation.clientes;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -56,17 +57,13 @@ public class Controller {
     
     public void  clienteSearch(String cedula){
         List<Cliente> clientes= Service.instance().clienteSearch(cedula);
-        Provincia p= new Provincia();
-        Distrito d= new Distrito();
-        Canton c= new Canton();
-        model.setCliente(new Cliente(cedula,"","",p,c,d));        
+        model.setCliente(new Cliente(cedula,"",""));        
         model.setClientes(clientes);
         model.commit();
     }
     
     public void clienteEdit(int row){
         Cliente cliente = model.getClientes().get(row);
-        Service.instance().store();
         model.setCliente(cliente);
         model.commit();
     }
@@ -74,7 +71,6 @@ public class Controller {
     public void clienteAdd(Cliente cliente){
         try {
             Service.instance().clienteAdd(cliente);
-            Service.instance().store();
             model.setCliente(new Cliente("","",""));
             model.setClientes(Arrays.asList(cliente));
             model.commit();
@@ -83,6 +79,24 @@ public class Controller {
         }
         
     }
+    public void clienteAll(){
+        model.setClientes(Service.instance().clienteAll());
+        model.commit();
+    }
+      public List<Cliente> clienteAllList(){
+        return Service.instance().clienteAll();
+    }
+    //--------------PDF----------------------//
+     
+     public static final String DEST = "Clientes.pdf";
+    public void PDFCLIENTE() throws IOException{
+        
+        Service.instance().CrearPDFcliente(DEST,model.getCliente());
+        //model.setCliente(cliente);
+        
+    }
+    
+    
     //Combo Box-------------------------------------------------------------------------
     public Provincia getProvincia(String nombre){
         return Service.instance().buscarProvincia(nombre);
@@ -137,7 +151,9 @@ public class Controller {
     public void hide(){
         this.view.setVisible(false);
     }
-    
+     public void exit(){
+        Service.instance().store();
+    }
     
 }
 

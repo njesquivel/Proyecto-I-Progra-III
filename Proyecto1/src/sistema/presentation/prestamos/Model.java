@@ -43,7 +43,9 @@ public class Model extends Observable {
     public void setPrestamos(List<Prestamo> prestamos) {
         this.prestamos = prestamos;
     }
-    
+    public void addPrestamo(Prestamo P){
+         this.prestamos.add(P);
+    }
         @Override
     public synchronized void addObserver(Observer o) {
         super.addObserver(o); 

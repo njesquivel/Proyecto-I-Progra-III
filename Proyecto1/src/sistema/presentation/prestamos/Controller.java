@@ -43,7 +43,7 @@ public class Controller {
        public void show(Cliente cliente){
         this.view.setVisible(true);
         model.setCliente(cliente);
-        view.getClienteInfo().setText("Cliente: "+model.getCliente().getNombre()+ ", Cedula: "+model.getCliente().getCedula());
+        view.getClienteInfo().setText("Cliente: "+cliente.getNombre()+", Cedula: "+cliente.getCedula());
        
     }
        //-----------------------------------------------------------------------------
@@ -60,16 +60,24 @@ public class Controller {
         }
     }
     
-    public void  prestamoSearch(String numero){
-        List<Prestamo> prestamos= Service.instance().prestamoSearch(numero);
-        model.setPrestamo(new Prestamo(numero,"",0,0,0));
+    public ArrayList<Prestamo>  prestamoSearch(String numero){
+        ArrayList<Prestamo> prestamos= (ArrayList<Prestamo>) Service.instance().prestamoAll();
+        ArrayList<Prestamo> pres= new ArrayList<>();
+       
+      for( Prestamo prest  : prestamos){
+          if(prest.getCliente().getCedula().equals(numero)){
+              pres.add(prest);
+          }
+      }
+         
+        model.setPrestamo(new Prestamo("","",model.cliente,0,0,0));
         model.setPrestamos(prestamos);
         model.commit();
+        return pres;
     }
     
     public void prestamoEdit(int row){
         Prestamo prestamo = model.getPrestamos().get(row);
-         Service.instance().store();
         model.setPrestamo(prestamo);
         model.commit();
     }
@@ -77,9 +85,6 @@ public class Controller {
     public void prestamoAdd(Prestamo prestamo){
         try {
             Service.instance().prestamoAdd(prestamo);
-             Service.instance().store();
-            model.setPrestamo(new Prestamo("","",0,0,0));
-            model.setPrestamos(Arrays.asList(prestamo));
             model.commit();
         } catch (Exception ex) {
             

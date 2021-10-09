@@ -8,6 +8,7 @@ package sistema.presentation.prestamos;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.Observable;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 import sistema.Application;
 import sistema.logic.Cliente;
 import sistema.logic.Prestamo;
+import sistema.logic.Service;
 import sistema.presentation.clientes.ClientesTableModel;
 
 
@@ -64,7 +66,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         monto.setText(""+cliente.getMonto());
         plazo.setText(""+cliente.getPlazo());
         interes.setText(""+cliente.getPlazo());
+       
         prestamos.setModel(new PrestamosTableModel(model.getPrestamos()));
+        
+        //pruebas
         if(model.getCliente()!=null){
             clienteInfo.setText(model.getCliente().getCedula());
         }
@@ -292,7 +297,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
         // TODO add your handling code here:
-         controller.prestamoSearch(numero.getText());
+   //      controller.prestamoSearch(model.getCliente().getCedula());
+         prestamos.setModel(new PrestamosTableModel(controller.prestamoSearch(model.getCliente().getCedula())));
     }//GEN-LAST:event_listarActionPerformed
 
     private void prestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prestamosMouseClicked
@@ -304,17 +310,22 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        try{  
+        if(!"".equals(numero.getText())&&!"".equals(descripcion.getSelectedItem())&&
+             !"".equals(monto.getText())&&!"".equals(interes.getText())&&
+             !"".equals(plazo.getText()))  {
         controller.prestamoAdd(new Prestamo(numero.getText(), (String) descripcion.getSelectedItem(),model.getCliente(),Double.parseDouble(monto.getText()),Double.parseDouble(interes.getText()),Integer.parseInt(plazo.getText())));
-        }catch(Exception ex){
-        JOptionPane.showMessageDialog(null,ex.getMessage());
+         JOptionPane.showMessageDialog(null,"Operación realizada correctamente", "Exitoso",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+        
+        JOptionPane.showMessageDialog(null,"Existen campos invalidos ", "ERROR",JOptionPane.ERROR_MESSAGE);
         
         }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
         // TODO add your handling code here:
-         controller.hide();
+        Service.instance().store();
+        controller.hide();
     }//GEN-LAST:event_regresarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -7,6 +7,7 @@ package sistema.presentation.clientes;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -94,6 +95,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         setIconImage(getIconImage());
         setLocationRelativeTo(null);
         this.setTitle("Clientes");
+        selected = false;
     }
     
      //colocar icono del jframe
@@ -131,9 +133,17 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         canton = new javax.swing.JComboBox<>();
         distrito = new javax.swing.JComboBox<>();
         prestamos = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Cedula");
@@ -228,10 +238,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         });
 
-        jButton1.setText("Reporte PDF");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        reporte.setText("Reporte PDF");
+        reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                reporteActionPerformed(evt);
             }
         });
 
@@ -287,7 +297,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(mapacrlb, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(reporte))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(prestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -342,8 +352,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                         .addGap(92, 92, 92)
                         .addComponent(prestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(reporte)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(223, 223, 223))
@@ -359,7 +368,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
         // TODO add your handling code here:
-         controller.clienteSearch(cedula.getText());
+         controller.clienteAll();
     }//GEN-LAST:event_listarActionPerformed
 
     private void clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientesMouseClicked
@@ -530,12 +539,28 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamosActionPerformed
         // TODO add your handling code here:
-      controller.prestamosShow();
+      
+        
+        controller.prestamosShow();
     }//GEN-LAST:event_prestamosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteActionPerformed
+        try {
+            // TODO add your handling code here:
+            controller.PDFCLIENTE();
+        } catch (IOException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_reporteActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        controller.exit();
+    }//GEN-LAST:event_formWindowClosing
 
 
     public static void main(String args[]) {
@@ -577,7 +602,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTable clientes;
     private javax.swing.JButton consultar;
     private javax.swing.JComboBox<String> distrito;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -590,6 +614,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTextField nombre;
     private javax.swing.JButton prestamos;
     private javax.swing.JLabel provincia;
+    private javax.swing.JButton reporte;
     private javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,12 +21,13 @@ import sistema.logic.Mensualidad;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Data {
-    private List<Cliente> clientes;    
     private List<Provincia> provincias;
     private List<Canton> cantones;
     private List<Distrito> distritos;
+    private List<Cliente> clientes;   
     private List<Prestamo> prestamos;
-     private List<Mensualidad> mensualidades;
+    private List<Mensualidad> mensualidades;
+     
     
     public Data() {
         clientes = new ArrayList<>();

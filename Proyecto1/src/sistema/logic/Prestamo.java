@@ -18,19 +18,13 @@ public class Prestamo {
     @XmlID  
     String numero;
     String descripción;
-    @XmlIDREF
+    
     Cliente cliente;
     double monto;
     double interes;
     int plazo;
 
-    public Prestamo( String numero,String descripcion,double monto, double interes, int plazo) {
-        this.monto = monto;
-        this.interes = interes;
-        this.plazo = plazo;
-        this.numero=numero;
-        this.descripción=descripcion;
-    }
+    
 
     public Cliente getCliente() {
         return cliente;
