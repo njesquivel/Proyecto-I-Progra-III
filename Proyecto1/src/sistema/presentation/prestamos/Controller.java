@@ -60,6 +60,7 @@ public class Controller {
         }
     }
     
+<<<<<<< Updated upstream
     public void  prestamoSearch(String numero){
         List<Prestamo> prestamos= Service.instance().prestamoSearch(numero);
       //List<Prestamo> pres;
@@ -70,21 +71,46 @@ public class Controller {
          
         // cambios
         model.setPrestamo(new Prestamo("","",0,0,0));
+=======
+    public ArrayList<Prestamo>  prestamoSearch(String numero){
+        ArrayList<Prestamo> prestamos= (ArrayList<Prestamo>) Service.instance().prestamoAll();
+        ArrayList<Prestamo> pres= new ArrayList<>();
+       
+      for( Prestamo prest  : prestamos){
+          if(prest.getCliente().getCedula().equals(numero)){
+              pres.add(prest);
+          }
+      }
+         
+        model.setPrestamo(new Prestamo("","",model.cliente,0,0,0));
+>>>>>>> Stashed changes
         model.setPrestamos(prestamos);
         model.commit();
+        return pres;
     }
     
     public void prestamoEdit(int row){
         Prestamo prestamo = model.getPrestamos().get(row);
+<<<<<<< Updated upstream
+=======
+        Service.instance().store();
+>>>>>>> Stashed changes
         model.setPrestamo(prestamo);
         model.commit();
     }
     
     public void prestamoAdd(Prestamo prestamo){
         try {
+            System.out.print(prestamo.toString());
             Service.instance().prestamoAdd(prestamo);
+<<<<<<< Updated upstream
             model.setPrestamo(new Prestamo("","",0,0,0));
             model.setPrestamos(Arrays.asList(prestamo));
+=======
+            Service.instance().store();
+           // model.setPrestamo(new Prestamo("","",model.cliente,0,0,0));
+            //model.addPrestamo(prestamo);
+>>>>>>> Stashed changes
             model.commit();
         } catch (Exception ex) {
             

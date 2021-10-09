@@ -19,14 +19,21 @@ public class Prestamo {
     List<Pago> pagos;
     @XmlID  
     String numero;
+<<<<<<< Updated upstream
     String descripción; 
     double saldo;
+=======
+    String descripción;
+    
+    Cliente cliente;
+>>>>>>> Stashed changes
     double monto;
     double interes;
     int plazo;
     @XmlIDREF
     Cliente cliente;
 
+<<<<<<< Updated upstream
     public Prestamo(String numero, String descripción, Cliente cliente, double monto, double interes, int plazo) {
         this.numero = numero;
         this.descripción = descripción;
@@ -48,6 +55,9 @@ public class Prestamo {
         this.interes = interes;
         this.plazo = plazo;
     }
+=======
+    
+>>>>>>> Stashed changes
 
 
    public List<Pago> getPagos() {

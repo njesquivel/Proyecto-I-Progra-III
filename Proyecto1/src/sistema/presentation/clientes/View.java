@@ -95,6 +95,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         setIconImage(getIconImage());
         setLocationRelativeTo(null);
         this.setTitle("Clientes");
+        selected = false;
     }
     
      //colocar icono del jframe
@@ -136,6 +137,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+<<<<<<< Updated upstream
+=======
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+>>>>>>> Stashed changes
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
@@ -364,7 +371,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
         // TODO add your handling code here:
-         controller.clienteSearch(cedula.getText());
+         controller.clienteAll();
     }//GEN-LAST:event_listarActionPerformed
 
     private void clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientesMouseClicked
@@ -535,7 +542,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamosActionPerformed
         // TODO add your handling code here:
-      controller.prestamosShow();
+      
+        
+        controller.prestamosShow();
     }//GEN-LAST:event_prestamosActionPerformed
 
     private void reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteActionPerformed
@@ -547,9 +556,19 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         }
     }//GEN-LAST:event_reporteActionPerformed
 
+<<<<<<< Updated upstream
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         controller.exit();
+=======
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        //controller.exit();
+>>>>>>> Stashed changes
     }//GEN-LAST:event_formWindowClosing
 
 

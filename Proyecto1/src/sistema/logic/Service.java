@@ -95,9 +95,15 @@ public class Service {
         else throw new Exception("Prestamo no existe");   
     }
       public List<Prestamo> prestamoSearch(String numero){
+<<<<<<< Updated upstream
          List<Prestamo> result =data.getPrestamos().stream().filter(c->c.getCliente().getCedula().startsWith(numero)).collect(Collectors.toList());
         //=
         
+=======
+          List<Prestamo> result=data.getPrestamos().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
+       //List<Prestamo> result=data.getPrestamos().stream().filter(c->c.getCliente().getCedula()..collect(Collectors.toList());
+       
+>>>>>>> Stashed changes
        return result;        
     }
     
@@ -116,9 +122,15 @@ public class Service {
     
   
     
+<<<<<<< Updated upstream
     //-----------------------------Pagos-----------------------------------------------------
        public Pago pagoGet(String ID) throws Exception{
         Pago result=data.getPagos().stream().filter(c->c.getID().equals(ID)).findFirst().orElse(null);
+=======
+    //-----------------------------Mensualidad-----------------------------------------------------
+       public Mensualidad mensualidadGet(String numero) throws Exception{
+        Mensualidad result=data.getMensualidades().stream().filter(c->c.getNumero().equals(numero)).findFirst().orElse(null);
+>>>>>>> Stashed changes
         if (result!=null) return result;
         else throw new Exception("Mensualidad no existe");   
     }
