@@ -95,8 +95,8 @@ public class Prestamo {
     }
     
     String mensualidades(){
-        ArrayList<Mensualidad> listMensualidades = new ArrayList<Mensualidad>();
-        Mensualidad aux;
+        ArrayList<Pago> listMensualidades = new ArrayList<Pago>();
+        Pago aux;
         double saldo = monto;
         double intereses;
         double amortizacion=0;
@@ -104,7 +104,7 @@ public class Prestamo {
             saldo = saldo - amortizacion;
             intereses = saldo * interes/100;
             amortizacion = cuota() - intereses;
-            aux = new Mensualidad(String.valueOf(i+1), saldo, intereses, amortizacion);
+            aux = new Pago(String.valueOf(i+1), saldo, intereses, amortizacion);
             listMensualidades.add(aux);
         }
         return listMensualidades.toString();

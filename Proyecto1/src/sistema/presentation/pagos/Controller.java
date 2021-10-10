@@ -8,7 +8,7 @@ package sistema.presentation.pagos;
 import java.util.ArrayList;
 import sistema.Application;
 import sistema.logic.Cliente;
-import sistema.logic.Mensualidad;
+import sistema.logic.Pago;
 import sistema.logic.Prestamo;
 
 
@@ -21,7 +21,7 @@ public class Controller {
         this.view = view;
         // invoke Model sets for initialization before linking to the view
         // problably get the data from Service
-        model.setPago(new Mensualidad());
+        model.setPago(new Pago());
         model.setPagos(new ArrayList<>());
         
         view.setModel(model);

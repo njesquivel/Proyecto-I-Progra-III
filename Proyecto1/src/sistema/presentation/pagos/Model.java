@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import sistema.logic.Cliente;
-import sistema.logic.Mensualidad;
+import sistema.logic.Pago;
 import sistema.logic.Prestamo;
 
 /**
@@ -17,25 +17,25 @@ import sistema.logic.Prestamo;
  * @author ESCINF
  */
 public class Model extends Observable {
-   Mensualidad pago;
-   List<Mensualidad> pagos;
+   Pago pago;
+   List<Pago> pagos;
    
     //Prestamo para pagos
    Prestamo prestamo;
 
-    public Mensualidad getPago() {
+    public Pago getPago() {
         return pago;
     }
 
-    public void setPago(Mensualidad pago) {
+    public void setPago(Pago pago) {
         this.pago = pago;
     }
 
-    public List<Mensualidad> getPagos() {
+    public List<Pago> getPagos() {
         return pagos;
     }
 
-    public void setPagos(List<Mensualidad> pagos) {
+    public void setPagos(List<Pago> pagos) {
         this.pagos = pagos;
     }
 

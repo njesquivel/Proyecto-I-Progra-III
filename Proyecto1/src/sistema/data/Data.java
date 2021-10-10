@@ -15,7 +15,7 @@ import sistema.logic.Cliente;
 import sistema.logic.Distrito;
 import sistema.logic.Prestamo;
 import sistema.logic.Provincia;
-import sistema.logic.Mensualidad;
+import sistema.logic.Pago;
 
 
 @XmlRootElement
@@ -26,7 +26,7 @@ public class Data {
     private List<Distrito> distritos;
     private List<Cliente> clientes;   
     private List<Prestamo> prestamos;
-    private List<Mensualidad> mensualidades;
+    private List<Pago> pagos;
      
     
     public Data() {
@@ -35,16 +35,16 @@ public class Data {
         cantones =new ArrayList<>();
         distritos =new ArrayList<>();
         prestamos= new ArrayList<>();
-        mensualidades= new ArrayList<>();
+        pagos= new ArrayList<>();
         
     }
 
-    public List<Mensualidad> getMensualidades() {
-        return mensualidades;
+    public List<Pago> getPagos() {
+        return pagos;
     }
 
-    public void setMensualidades(List<Mensualidad> mensualidades) {
-        this.mensualidades = mensualidades;
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
     }
 
     

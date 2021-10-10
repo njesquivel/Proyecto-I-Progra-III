@@ -116,25 +116,25 @@ public class Service {
     
   
     
-    //-----------------------------Mensualidad-----------------------------------------------------
-       public Mensualidad mensualidadGet(String numero) throws Exception{
-        Mensualidad result=data.getMensualidades().stream().filter(c->c.getNumero().equals(numero)).findFirst().orElse(null);
+    //-----------------------------Pago-----------------------------------------------------
+       public Pago pagoGet(String numero) throws Exception{
+        Pago result=data.getPagos().stream().filter(c->c.getNumero().equals(numero)).findFirst().orElse(null);
         if (result!=null) return result;
         else throw new Exception("Mensualidad no existe");   
     }
-      public List<Mensualidad> mensualidadSearch(String numero){
-        List<Mensualidad> result=data.getMensualidades().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
+      public List<Pago> pagoSearch(String numero){
+        List<Pago> result=data.getPagos().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
        return result;        
     }
       
-       public List<Mensualidad> mensualidadAll(){
-        return data.getMensualidades();       
+       public List<Pago> pagoAll(){
+        return data.getPagos();       
     }
     
-       public void mensualidadAdd(Mensualidad mensualidad) throws Exception{
-        Mensualidad old=data.getMensualidades().stream().filter(c->c.getNumero().equals(mensualidad.getNumero())).findFirst().orElse(null);
-        if (old==null) data.getMensualidades().add(mensualidad);
-        else throw new Exception("mensualidad ya existe");           
+       public void pagoAdd(Pago mensualidad) throws Exception{
+        Pago old=data.getPagos().stream().filter(c->c.getNumero().equals(mensualidad.getNumero())).findFirst().orElse(null);
+        if (old==null) data.getPagos().add(mensualidad);
+        else throw new Exception("Pago ya existe");           
         
     }  
     
