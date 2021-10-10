@@ -2570,6 +2570,7 @@
             <distrito>113</distrito>
         </cliente>
         <monto>85222.0</monto>
+        <saldo>0.0</saldo>
         <interes>3.0</interes>
         <plazo>5</plazo>
     </prestamos>
@@ -2584,6 +2585,7 @@
             <distrito>113</distrito>
         </cliente>
         <monto>211214.0</monto>
+        <saldo>0.0</saldo>
         <interes>5.0</interes>
         <plazo>5</plazo>
     </prestamos>
@@ -2598,7 +2600,43 @@
             <distrito>130</distrito>
         </cliente>
         <monto>2121412.0</monto>
+        <saldo>0.0</saldo>
         <interes>2.0</interes>
         <plazo>2255</plazo>
     </prestamos>
+    <prestamos>
+        <numero>3</numero>
+        <descripción>Hipotecario</descripción>
+        <cliente>
+            <cedula>88888888888</cedula>
+            <nombre>Maria Fernanda</nombre>
+            <telefono>77777777</telefono>
+            <canton>13</canton>
+            <distrito>113</distrito>
+        </cliente>
+        <monto>8.978547885E9</monto>
+        <saldo>8.978547885E9</saldo>
+        <interes>20.0</interes>
+        <plazo>854</plazo>
+    </prestamos>
+    <prestamos>
+        <numero>4</numero>
+        <descripción>Vivienda</descripción>
+        <cliente>
+            <cedula>88888888888</cedula>
+            <nombre>Maria Fernanda</nombre>
+            <telefono>77777777</telefono>
+            <canton>13</canton>
+            <distrito>113</distrito>
+        </cliente>
+        <monto>2.55754258E8</monto>
+        <saldo>2.55754258E8</saldo>
+        <interes>10.0</interes>
+        <plazo>75</plazo>
+    </prestamos>
+    <pagos>
+        <amortizacion>0.0</amortizacion>
+        <numero>1</numero>
+        <saldo>0.0</saldo>
+    </pagos>
 </data>

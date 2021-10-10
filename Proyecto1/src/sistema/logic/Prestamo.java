@@ -7,6 +7,7 @@ package sistema.logic;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,12 +19,12 @@ public class Prestamo {
     @XmlID  
     String numero;
     String descripción;
-    
     Cliente cliente;
     double monto;
+    double saldo = monto;
     double interes;
     int plazo;
-
+    List<Pago> pagos;
     
 
     public Cliente getCliente() {
@@ -39,6 +40,7 @@ public class Prestamo {
         this.descripción = descripción;
         this.cliente = cliente;
         this.monto = monto;
+        this.saldo = monto;
         this.interes = interes;
         this.plazo = plazo;
     }
@@ -61,6 +63,7 @@ public class Prestamo {
 
     public void setMonto(double monto) {
         this.monto = monto;
+        this.saldo = monto;
     }
 
     public void setInteres(double interes) {
@@ -86,12 +89,20 @@ public class Prestamo {
     public void setDescripción(String descripción) {
         this.descripción = descripción;
     }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
     
     public double cuota(){
        // double mon =((monto * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
         DecimalFormat df =new DecimalFormat("0.00");
   
-     return ((monto * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
+     return ((saldo * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
     }
     
     String mensualidades(){

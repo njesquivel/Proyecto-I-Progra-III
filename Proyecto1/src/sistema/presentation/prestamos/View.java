@@ -60,9 +60,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
    
         @Override
     public void update(Observable o, Object arg) {
-        
         Prestamo cliente = model.getPrestamo();
-        Cliente c = model.getCliente();
         numero.setText(cliente.getNumero());
         descripcion.setSelectedItem(cliente.getDescripción());
         monto.setText(""+cliente.getMonto());
@@ -74,12 +72,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         //pruebas
         if(model.getCliente()!=null){
             clienteInfo.setText(model.getCliente().getCedula());
-            llenar(c);
         }
         
-    }
-    public void llenar(Cliente cliente){
-       clienteInfo.setText("Cliente: "+cliente.getNombre()+", Cedula: "+cliente.getCedula());   
     }
 
     /**
@@ -113,7 +107,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        clienteInfo.setText("jLabel1");
         clienteInfo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -309,7 +302,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void prestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prestamosMouseClicked
         // TODO add your handling code here:
-         if(evt.getClickCount()==2){
+         if(evt.getClickCount()==1){
             controller.prestamoEdit(prestamos.getSelectedRow());
         }
     }//GEN-LAST:event_prestamosMouseClicked
@@ -320,12 +313,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
              !"".equals(monto.getText())&&!"".equals(interes.getText())&&
              !"".equals(plazo.getText()))  {
         controller.prestamoAdd(new Prestamo(numero.getText(), (String) descripcion.getSelectedItem(),model.getCliente(),Double.parseDouble(monto.getText()),Double.parseDouble(interes.getText()),Integer.parseInt(plazo.getText())));
-         JOptionPane.showMessageDialog(null,"Operación realizada correctamente", "Exitoso",JOptionPane.INFORMATION_MESSAGE);
+        prestamos.setModel(new PrestamosTableModel(controller.prestamoSearch(model.getCliente().getCedula()))); 
+        JOptionPane.showMessageDialog(null,"Operación realizada correctamente", "Exitoso",JOptionPane.INFORMATION_MESSAGE);
         }else{
         
         JOptionPane.showMessageDialog(null,"Existen campos invalidos ", "ERROR",JOptionPane.ERROR_MESSAGE);
         
         }
+        
     }//GEN-LAST:event_guardarActionPerformed
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
@@ -340,7 +335,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void pagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagosActionPerformed
         // TODO add your handling code here:
-       controller.pagosShow();
+        if(prestamos.getSelectedRow()>= 0){    
+            controller.pagosShow();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"No ha seleccionado un prestamo ", "ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+       
     }//GEN-LAST:event_pagosActionPerformed
 
     /**

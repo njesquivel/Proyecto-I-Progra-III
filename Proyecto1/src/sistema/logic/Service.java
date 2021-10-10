@@ -120,7 +120,7 @@ public class Service {
        public Pago pagoGet(String numero) throws Exception{
         Pago result=data.getPagos().stream().filter(c->c.getNumero().equals(numero)).findFirst().orElse(null);
         if (result!=null) return result;
-        else throw new Exception("Mensualidad no existe");   
+        else throw new Exception("Pago no existe");   
     }
       public List<Pago> pagoSearch(String numero){
         List<Pago> result=data.getPagos().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
@@ -131,9 +131,9 @@ public class Service {
         return data.getPagos();       
     }
     
-       public void pagoAdd(Pago mensualidad) throws Exception{
-        Pago old=data.getPagos().stream().filter(c->c.getNumero().equals(mensualidad.getNumero())).findFirst().orElse(null);
-        if (old==null) data.getPagos().add(mensualidad);
+       public void pagoAdd(Pago pago) throws Exception{
+        Pago old=data.getPagos().stream().filter(c->c.getNumero().equals(pago.getNumero())).findFirst().orElse(null);
+        if (old==null) data.getPagos().add(pago);
         else throw new Exception("Pago ya existe");           
         
     }  

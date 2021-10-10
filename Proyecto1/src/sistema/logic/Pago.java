@@ -5,22 +5,34 @@
  */
 package sistema.logic;
 
+import java.util.ArrayList;
+
 public class Pago {
     
     String numero;
+    double monto;
     double saldo;
-    double interes;
+    double intereses;
     double amortizacion;
+    int plazo;
 
 
     
-    public Pago(String numero, double saldo, double interes, double amortizacion) {
+    public Pago(String numero, double monto, double interes, double amortizacion) {
         this.numero = numero;
-        this.saldo = saldo;
-        this.interes = interes;
+        this.saldo = monto;
+        this.monto = monto;
+        this.intereses = intereses;
         this.amortizacion = amortizacion;
     }
 
+    public Pago(String numero, double monto, double interes) {
+        this.numero = numero;
+        this.monto = monto;
+        this.saldo = monto;
+        calculo(interes);
+    }
+    
     public Pago() {
     }
 
@@ -39,8 +51,8 @@ public class Pago {
         return saldo;
     }
 
-    public double getInteres() {
-        return interes;
+    public double getIntereses() {
+        return intereses;
     }
 
     public double getAmortizacion() {
@@ -53,16 +65,22 @@ public class Pago {
         this.saldo = saldo;
     }
 
-    public void setInteres(double interes) {
-        this.interes = interes;
+    public void setInteres(double intereses) {
+        this.intereses = intereses;
     }
 
     public void setAmortizacion(double amortizacion) {
         this.amortizacion = amortizacion;
     }
 
-    @Override
-    public String toString() {
-        return "Mensualidad{" + "numero=" + numero + ", saldo=" + saldo + ", interes=" + interes + ", amortizacion=" + amortizacion + "}\n";
+    void calculo(double interes){
+       
+            
+            intereses = monto * interes/100;
+            amortizacion = monto - intereses;
+            saldo = monto - amortizacion;
+            
+        }
     }
-}
+
+

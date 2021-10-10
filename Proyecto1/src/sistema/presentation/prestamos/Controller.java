@@ -94,7 +94,7 @@ public class Controller {
     
     //recordar por parametro model.
     public void pagosShow(){
-        this.hide();
+        this.view.setVisible(true);
         Application.PAGOS.show( model.getPrestamo());
     }
    

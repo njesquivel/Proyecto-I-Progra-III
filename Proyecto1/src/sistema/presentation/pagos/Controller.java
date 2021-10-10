@@ -10,6 +10,7 @@ import sistema.Application;
 import sistema.logic.Cliente;
 import sistema.logic.Pago;
 import sistema.logic.Prestamo;
+import sistema.logic.Service;
 
 
 public class Controller {
@@ -41,5 +42,20 @@ public class Controller {
         Application.PRESTAMO.show();
     }  
       
+    
+    public void pagoEdit(int row){
+        Pago pago = model.getPagos().get(row);
+        model.setPago(pago);
+        model.commit();
+    }
+    
+    public void pagoAdd(Pago pago){
+        try {
+            Service.instance().pagoAdd(pago);
+            model.commit();
+        } catch (Exception ex) {
+            
+        }
         
+    }
 }

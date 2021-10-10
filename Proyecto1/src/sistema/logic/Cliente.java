@@ -5,7 +5,6 @@
  */
 package sistema.logic;
 
-import java.util.List;
 import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -14,7 +13,7 @@ import javax.xml.bind.annotation.XmlIDREF;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Cliente {
-    @XmlID      
+   @XmlID      
     String cedula;
     String nombre;
     String telefono;
