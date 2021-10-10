@@ -60,30 +60,21 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
    
         @Override
     public void update(Observable o, Object arg) {
-<<<<<<< Updated upstream
         
-        Prestamo prestamo = model.getPrestamo();
-        Cliente cliente = model.getCliente();
-        numero.setText(prestamo.getNumero());
-        descripcion.setSelectedItem(prestamo.getDescripción());
-        monto.setText(""+prestamo.getMonto());
-        plazo.setText(""+prestamo.getPlazo());
-        interes.setText(""+prestamo.getPlazo());
-=======
         Prestamo cliente = model.getPrestamo();
+        Cliente c = model.getCliente();
         numero.setText(cliente.getNumero());
         descripcion.setSelectedItem(cliente.getDescripción());
         monto.setText(""+cliente.getMonto());
         plazo.setText(""+cliente.getPlazo());
         interes.setText(""+cliente.getPlazo());
        
->>>>>>> Stashed changes
         prestamos.setModel(new PrestamosTableModel(model.getPrestamos()));
         
         //pruebas
         if(model.getCliente()!=null){
             clienteInfo.setText(model.getCliente().getCedula());
-            //llenar(cliente);
+            llenar(c);
         }
         
     }
@@ -312,12 +303,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
         // TODO add your handling code here:
-<<<<<<< Updated upstream
-         controller.prestamoSearch("666");
-=======
    //      controller.prestamoSearch(model.getCliente().getCedula());
          prestamos.setModel(new PrestamosTableModel(controller.prestamoSearch(model.getCliente().getCedula())));
->>>>>>> Stashed changes
     }//GEN-LAST:event_listarActionPerformed
 
     private void prestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prestamosMouseClicked
@@ -329,14 +316,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-<<<<<<< Updated upstream
-
-        if(!"".equals(numero.getText())&&!"".equals(descripcion.getSelectedItem())&& !"".equals(monto.getText())&&!"".equals(interes.getText())&& !"".equals(plazo.getText()))  {
-=======
         if(!"".equals(numero.getText())&&!"".equals(descripcion.getSelectedItem())&&
              !"".equals(monto.getText())&&!"".equals(interes.getText())&&
              !"".equals(plazo.getText()))  {
->>>>>>> Stashed changes
         controller.prestamoAdd(new Prestamo(numero.getText(), (String) descripcion.getSelectedItem(),model.getCliente(),Double.parseDouble(monto.getText()),Double.parseDouble(interes.getText()),Integer.parseInt(plazo.getText())));
          JOptionPane.showMessageDialog(null,"Operación realizada correctamente", "Exitoso",JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -348,8 +330,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
         // TODO add your handling code here:
-        prestamos.setModel(new PrestamosTableModel(new ArrayList<>()));
-         controller.hide();
+        Service.instance().store();
+        controller.hide();
     }//GEN-LAST:event_regresarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

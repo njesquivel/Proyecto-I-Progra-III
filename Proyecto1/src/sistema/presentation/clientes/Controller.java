@@ -57,9 +57,6 @@ public class Controller {
     
     public void  clienteSearch(String cedula){
         List<Cliente> clientes= Service.instance().clienteSearch(cedula);
-      /*  Provincia p= new Provincia();
-        Distrito d= new Distrito();
-        Canton c= new Canton();*/
         model.setCliente(new Cliente(cedula,"",""));        
         model.setClientes(clientes);
         model.commit();
@@ -82,8 +79,6 @@ public class Controller {
         }
         
     }
-<<<<<<< Updated upstream
-=======
     public void clienteAll(){
         model.setClientes(Service.instance().clienteAll());
         model.commit();
@@ -91,7 +86,6 @@ public class Controller {
       public List<Cliente> clienteAllList(){
         return Service.instance().clienteAll();
     }
->>>>>>> Stashed changes
     //--------------PDF----------------------//
      
      public static final String DEST = "Clientes.pdf";
@@ -157,12 +151,7 @@ public class Controller {
     public void hide(){
         this.view.setVisible(false);
     }
-<<<<<<< Updated upstream
-    
-    public void exit(){
-=======
      public void exit(){
->>>>>>> Stashed changes
         Service.instance().store();
     }
     

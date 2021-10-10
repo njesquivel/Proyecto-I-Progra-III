@@ -137,12 +137,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
-<<<<<<< Updated upstream
-=======
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
->>>>>>> Stashed changes
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
@@ -556,19 +553,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         }
     }//GEN-LAST:event_reporteActionPerformed
 
-<<<<<<< Updated upstream
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
-        controller.exit();
-=======
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        //controller.exit();
->>>>>>> Stashed changes
+        controller.exit();
     }//GEN-LAST:event_formWindowClosing
 
 

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import sistema.logic.Cliente;
-import sistema.logic.Mensualidad;
+import sistema.logic.Pago;
 import sistema.logic.Prestamo;
 import sistema.logic.Cliente;
 import sistema.logic.Pago;

@@ -12,61 +12,18 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
-import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Prestamo {
-    List<Pago> pagos;
     @XmlID  
     String numero;
-<<<<<<< Updated upstream
-    String descripción; 
-    double saldo;
-=======
     String descripción;
     
     Cliente cliente;
->>>>>>> Stashed changes
     double monto;
     double interes;
     int plazo;
-    @XmlIDREF
-    Cliente cliente;
 
-<<<<<<< Updated upstream
-    public Prestamo(String numero, String descripción, Cliente cliente, double monto, double interes, int plazo) {
-        this.numero = numero;
-        this.descripción = descripción;
-        this.saldo = monto;
-        this.monto = monto;
-        this.interes = interes;
-        this.plazo = plazo;
-        this.cliente = cliente;
-    }
-
-
-    
-    public Prestamo(String numero, String descripción, double monto, double interes, int plazo) {
-        this.numero = numero;
-        this.descripción = descripción;
-        this.cliente = new Cliente("","","");
-        this.monto = monto;
-        this.saldo = monto;
-        this.interes = interes;
-        this.plazo = plazo;
-    }
-=======
-    
->>>>>>> Stashed changes
-
-
-   public List<Pago> getPagos() {
-        return pagos;
-    }
-
-    public void setPagos(List<Pago> pagos) {
-        this.pagos = pagos;
-    }
     
 
     public Cliente getCliente() {
@@ -77,7 +34,14 @@ public class Prestamo {
         this.cliente = cliente;
     }
 
-
+    public Prestamo(String numero, String descripción, Cliente cliente, double monto, double interes, int plazo) {
+        this.numero = numero;
+        this.descripción = descripción;
+        this.cliente = cliente;
+        this.monto = monto;
+        this.interes = interes;
+        this.plazo = plazo;
+    }
 
    public Prestamo(){
        
@@ -127,12 +91,12 @@ public class Prestamo {
        // double mon =((monto * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
         DecimalFormat df =new DecimalFormat("0.00");
   
-     return ((saldo * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
+     return ((monto * interes/100)/(1-(Math.pow((1+interes/100),(-plazo)))));
     }
     
     String mensualidades(){
-        ArrayList<Mensualidad> listMensualidades = new ArrayList<Mensualidad>();
-        Mensualidad aux;
+        ArrayList<Pago> listMensualidades = new ArrayList<Pago>();
+        Pago aux;
         double saldo = monto;
         double intereses;
         double amortizacion=0;
@@ -140,12 +104,11 @@ public class Prestamo {
             saldo = saldo - amortizacion;
             intereses = saldo * interes/100;
             amortizacion = cuota() - intereses;
-            aux = new Mensualidad(String.valueOf(i+1), saldo, intereses, amortizacion);
+            aux = new Pago(String.valueOf(i+1), saldo, intereses, amortizacion);
             listMensualidades.add(aux);
         }
         return listMensualidades.toString();
     }
-    
 
     @Override
     public int hashCode() {

@@ -95,15 +95,9 @@ public class Service {
         else throw new Exception("Prestamo no existe");   
     }
       public List<Prestamo> prestamoSearch(String numero){
-<<<<<<< Updated upstream
-         List<Prestamo> result =data.getPrestamos().stream().filter(c->c.getCliente().getCedula().startsWith(numero)).collect(Collectors.toList());
-        //=
-        
-=======
           List<Prestamo> result=data.getPrestamos().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
        //List<Prestamo> result=data.getPrestamos().stream().filter(c->c.getCliente().getCedula()..collect(Collectors.toList());
        
->>>>>>> Stashed changes
        return result;        
     }
     
@@ -122,20 +116,14 @@ public class Service {
     
   
     
-<<<<<<< Updated upstream
-    //-----------------------------Pagos-----------------------------------------------------
-       public Pago pagoGet(String ID) throws Exception{
-        Pago result=data.getPagos().stream().filter(c->c.getID().equals(ID)).findFirst().orElse(null);
-=======
-    //-----------------------------Mensualidad-----------------------------------------------------
-       public Mensualidad mensualidadGet(String numero) throws Exception{
-        Mensualidad result=data.getMensualidades().stream().filter(c->c.getNumero().equals(numero)).findFirst().orElse(null);
->>>>>>> Stashed changes
+    //-----------------------------Pago-----------------------------------------------------
+       public Pago pagoGet(String numero) throws Exception{
+        Pago result=data.getPagos().stream().filter(c->c.getNumero().equals(numero)).findFirst().orElse(null);
         if (result!=null) return result;
         else throw new Exception("Mensualidad no existe");   
     }
-      public List<Pago> pagoSearch(String ID){
-        List<Pago> result=data.getPagos().stream().filter(c->c.getID().startsWith(ID)).collect(Collectors.toList());
+      public List<Pago> pagoSearch(String numero){
+        List<Pago> result=data.getPagos().stream().filter(c->c.getNumero().startsWith(numero)).collect(Collectors.toList());
        return result;        
     }
       
@@ -143,10 +131,10 @@ public class Service {
         return data.getPagos();       
     }
     
-       public void pagoAdd(Pago pago) throws Exception{
-        Pago old=data.getPagos().stream().filter(c->c.getID().equals(pago.getID())).findFirst().orElse(null);
-        if (old==null) data.getPagos().add(pago);
-        else throw new Exception("mensualidad ya existe");           
+       public void pagoAdd(Pago mensualidad) throws Exception{
+        Pago old=data.getPagos().stream().filter(c->c.getNumero().equals(mensualidad.getNumero())).findFirst().orElse(null);
+        if (old==null) data.getPagos().add(mensualidad);
+        else throw new Exception("Pago ya existe");           
         
     }  
     
